@@ -41,17 +41,17 @@ namespace SQLiteRepository
 		/// <summary>	Gets a t entity using the given identifier asynchronously. </summary>
 		/// <param name="id">	The Identifier to get. </param>
 		/// <returns>	A TEntity. </returns>
-		public virtual ConfiguredTaskAwaitable<TEntity> Get(int id)
+		public virtual ConfiguredTaskAwaitable<TEntity> Get(TKey id)
         {
-            return Table.FirstOrDefaultAsync(x => x.Id == id).ConfigureAwait(false);
+            return Table.FirstOrDefaultAsync(x => x.Id.Equals(id)).ConfigureAwait(false);
 		}
 
         /// <summary>	Gets a t entity using the given identifier asynchronously. </summary>
         /// <param name="id">	The Identifier to get. </param>
         /// <returns>	A list of TEntity. </returns>
-        public virtual ConfiguredTaskAwaitable<List<TEntity>> Get(IEnumerable<int> ids)
+        public virtual ConfiguredTaskAwaitable<List<TEntity>> Get(IEnumerable<TKey> ids)
 		{
-            return Table.Where(x => ids.Any(y=> y == x.Id)).ToListAsync().ConfigureAwait(false);
+            return Table.Where(x => ids.Any(y=> x.Id.Equals(y))).ToListAsync().ConfigureAwait(false);
         }
 
         /// <summary>	Gets first item in this collection matching a given filter asynchronously. </summary>
@@ -201,7 +201,7 @@ namespace SQLiteRepository
         /// <summary>	Deletes the given ID asynchronously. </summary>
         /// <param name="id">	The Identifier to delete. </param>
         /// <returns>	The number of objects deleted. </returns>
-        public virtual ConfiguredTaskAwaitable<int> Delete(int id)
+        public virtual ConfiguredTaskAwaitable<int> Delete(TKey id)
         {
             return Connection.DeleteAsync<TEntity>(id).ConfigureAwait(false);
         }

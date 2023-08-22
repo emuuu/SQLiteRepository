@@ -15,12 +15,12 @@ namespace SQLiteRepository
         /// <summary>	Gets an entity using the given identifier. </summary>
         /// <param name="id">	The Identifier to use. </param>
         /// <returns>	A TEntity. </returns>
-        ConfiguredTaskAwaitable<TEntity> Get(int id);
+        ConfiguredTaskAwaitable<TEntity> Get(TKey id);
 
         /// <summary>	Gets all entities using the given identifiers. </summary>
         /// <param name="ids">	The Identifier to use. </param>
         /// <returns>	A list of TEntity. </returns>
-        ConfiguredTaskAwaitable<List<TEntity>> Get(IEnumerable<int> ids);
+        ConfiguredTaskAwaitable<List<TEntity>> Get(IEnumerable<TKey> ids);
 
         /// <summary>	Gets first item in this collection matching a given filter asynchronously. </summary>
         /// <param name="filter">	A linq expression to filter the results. </param>
@@ -71,7 +71,7 @@ namespace SQLiteRepository
         /// <summary>	Deletes the given ID asynchronously. </summary>
         /// <param name="id">	The Identifier to delete. </param>
         /// <returns>	The number of objects deleted. </returns>
-        ConfiguredTaskAwaitable<int> Delete(int id);
+        ConfiguredTaskAwaitable<int> Delete(TKey id);
 
         /// <summary>	Deletes the given entity asynchronously. </summary>
         /// <param name="entity">	The entity to delete. </param>

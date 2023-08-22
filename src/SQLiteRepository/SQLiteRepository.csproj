@@ -12,10 +12,11 @@
     <Copyright></Copyright>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>SqLiteGenericRepository</PackageId>
-    <Version>1.0.0</Version>
-    <AssemblyVersion>1.0.0.0</AssemblyVersion>
-    <PackageReleaseNotes>initial package</PackageReleaseNotes>
+    <Version>1.0.1</Version>
+    <AssemblyVersion>1.0.0.1</AssemblyVersion>
+    <PackageReleaseNotes>switched Id type from int to generic</PackageReleaseNotes>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+    <Title>SqliteRepository</Title>
   </PropertyGroup>
 
   <ItemGroup>
