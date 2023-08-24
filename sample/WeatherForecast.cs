@@ -8,7 +8,7 @@ namespace Sample
     {
 
         [PrimaryKey, AutoIncrement]
-        public int? Id { get; set; }
+        public int Id { get; set; }
 
         public DateTime Date { get; set; }
 
