@@ -28,6 +28,12 @@ namespace SQLiteRepository
         ConfiguredTaskAwaitable<TEntity> Get<TProperty>(Expression<Func<TEntity, bool>> filter);
 
         /// <summary>	Gets all items in this collection asynchronously. </summary>
+        /// <returns>
+        ///     An list that allows foreach to be used to process all items in this collection.
+        /// </returns>
+		ConfiguredTaskAwaitable<List<TEntity>> GetAll<TProperty>();
+
+        /// <summary>	Gets all items in this collection asynchronously. </summary>
         /// <param name="filter">	A linq expression to filter the results. </param>
 		/// <param name="sorting">	A linq expression to sort the results.</param>
         /// <param name="page">	The requested page number. </param>

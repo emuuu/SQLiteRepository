@@ -12,9 +12,9 @@
     <Copyright></Copyright>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>SqLiteGenericRepository</PackageId>
-    <Version>1.0.2</Version>
-    <AssemblyVersion>1.0.0.2</AssemblyVersion>
-    <PackageReleaseNotes>fixed TKey</PackageReleaseNotes>
+    <Version>1.0.3</Version>
+    <AssemblyVersion>1.0.0.3</AssemblyVersion>
+    <PackageReleaseNotes>added plain GetAll</PackageReleaseNotes>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <Title>SqliteRepository</Title>
   </PropertyGroup>

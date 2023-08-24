@@ -74,28 +74,28 @@ namespace SQLiteRepository
         ///     An list that allows foreach to be used to process all items in this collection.
         /// </returns>
         public virtual ConfiguredTaskAwaitable<List<TEntity>> GetAll<TProperty>(Expression<Func<TEntity, bool>>? filter, Expression<Func<TEntity, TProperty>>? sorting, int? page = null, int? pageSize = null)
-		{
-			if (page.HasValue && pageSize.HasValue)
-			{
-				if (page < 1)
-				{
-					page = 1;
-				}
-				if (pageSize < 1)
-				{
-					pageSize = 1;
-				}
-			}
-			if(sorting == null)
-			{
+        {
+            if (page.HasValue && pageSize.HasValue)
+            {
+                if (page < 1)
+                {
+                    page = 1;
+                }
+                if (pageSize < 1)
+                {
+                    pageSize = 1;
+                }
+            }
+            if (sorting == null)
+            {
                 return Table
                     .Where(filter ?? (x => true))
                     .Skip(page.HasValue ? (page.Value - 1) * pageSize.Value : 0)
                     .Take(pageSize.HasValue ? pageSize.Value : int.MaxValue)
                     .ToListAsync().ConfigureAwait(false);
             }
-			else
-			{
+            else
+            {
                 return Table
                     .Where(filter ?? (x => true))
                     .OrderBy(sorting)
@@ -103,8 +103,16 @@ namespace SQLiteRepository
                     .Take(pageSize.HasValue ? pageSize.Value : int.MaxValue)
                     .ToListAsync().ConfigureAwait(false);
             }
-		}
+        }
 
+        /// <summary>	Gets all items in this collection asynchronously. </summary>
+        /// <returns>
+        ///     An list that allows foreach to be used to process all items in this collection.
+        /// </returns>
+        public virtual ConfiguredTaskAwaitable<List<TEntity>> GetAll<TProperty>()
+        {
+            return Table.ToListAsync().ConfigureAwait(false);
+        }
 
         /// <summary>	Counts all items in this table asynchronously. </summary>
         /// <param name="filter">	A linq expression to filter the results. </param>
