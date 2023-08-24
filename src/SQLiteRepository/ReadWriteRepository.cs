@@ -109,7 +109,7 @@ namespace SQLiteRepository
         /// <returns>
         ///     An list that allows foreach to be used to process all items in this collection.
         /// </returns>
-        public virtual ConfiguredTaskAwaitable<List<TEntity>> GetAll<TProperty>()
+        public virtual ConfiguredTaskAwaitable<List<TEntity>> GetAll()
         {
             return Table.ToListAsync().ConfigureAwait(false);
         }
