@@ -17,7 +17,7 @@ namespace SQLiteRepository
         /// <returns>	A TEntity. </returns>
         ConfiguredTaskAwaitable<TEntity> Get(TKey id);
 
-        /// <summary>	Gets all entities using the given identifiers. </summary>
+        /// <summary>	Gets all entities using the given identifiers. WARNING: May be subjected to sql injections </summary>
         /// <param name="ids">	The Identifier to use. </param>
         /// <returns>	A list of TEntity. </returns>
         ConfiguredTaskAwaitable<List<TEntity>> Get(IEnumerable<TKey> ids);

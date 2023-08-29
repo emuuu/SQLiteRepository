@@ -12,9 +12,9 @@
     <Copyright></Copyright>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>SqLiteGenericRepository</PackageId>
-    <Version>1.0.5</Version>
-    <AssemblyVersion>1.0.0.5</AssemblyVersion>
-    <PackageReleaseNotes>added deletion of multiple entites/ids</PackageReleaseNotes>
+    <Version>1.0.6</Version>
+    <AssemblyVersion>1.0.0.6</AssemblyVersion>
+    <PackageReleaseNotes>fixed retrieving items by IEnumerable of TKey</PackageReleaseNotes>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <Title>SqliteRepository</Title>
   </PropertyGroup>

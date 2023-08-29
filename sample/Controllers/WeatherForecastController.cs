@@ -25,8 +25,13 @@ namespace Sample.Controllers
         }
 
         [HttpGet(Name = nameof(GetAllWeatherForecasts))]
-        public async Task<IActionResult> GetAllWeatherForecasts([FromQuery] int? page = null, [FromQuery] int? pageSize = null)
+        public async Task<IActionResult> GetAllWeatherForecasts([FromQuery] IEnumerable<int>? weatherForecastIDs = null, [FromQuery] int? page = null, [FromQuery] int? pageSize = null)
         {
+            if(weatherForecastIDs!= null)
+            {
+                return Ok(await _weatherRepository.Get(weatherForecastIDs));
+            }
+
             if (!page.HasValue)
                 page = 1;
 

@@ -11,6 +11,7 @@ using System.Text.Json;
 using System.Threading;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.Threading.Tasks;
+using System.Diagnostics.Contracts;
 
 namespace SQLiteRepository
 {
@@ -46,12 +47,13 @@ namespace SQLiteRepository
             return Table.FirstOrDefaultAsync(x => x.Id.Equals(id)).ConfigureAwait(false);
 		}
 
-        /// <summary>	Gets a t entity using the given identifier asynchronously. </summary>
+        /// <summary>	Gets all entities using the given identifiers. WARNING: May be subjected to sql injections </summary>
         /// <param name="id">	The Identifier to get. </param>
         /// <returns>	A list of TEntity. </returns>
         public virtual ConfiguredTaskAwaitable<List<TEntity>> Get(IEnumerable<TKey> ids)
 		{
-            return Table.Where(x => ids.Any(y=> x.Id.Equals(y))).ToListAsync().ConfigureAwait(false);
+            var parameter = $"({string.Join(',', ids.Select(x => x.ToString().Replace(";", "").Replace("'", "").Replace("--", "")))})";
+            return Connection.QueryAsync<TEntity>($"SELECT * FROM [{typeof(TEntity).Name}] WHERE [Id] IN {parameter}").ConfigureAwait(false);
         }
 
         /// <summary>	Gets first item in this collection matching a given filter asynchronously. </summary>
