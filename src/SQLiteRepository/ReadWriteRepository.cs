@@ -224,20 +224,21 @@ namespace SQLiteRepository
             return Connection.DeleteAsync(entity).ConfigureAwait(false);
         }
 
-        /// <summary>	Deletes the given ID asynchronously. </summary>
+        /// <summary>	Deletes the given IDs asynchronously. WARNING: May be subjected to sql injections. </summary>
         /// <param name="ids">	The Identifiers to delete. </param>
         /// <returns>	The number of objects deleted. </returns>
         public virtual ConfiguredTaskAwaitable<int> Delete(IEnumerable<TKey> ids)
         {
-            return Connection.DeleteAsync<TEntity>(ids).ConfigureAwait(false);
+            var parameter = $"({string.Join(',', ids.Select(x => x.ToString().Replace(";", "").Replace("'", "").Replace("--", "")))})";
+            return Connection.ExecuteAsync($"DELETE FROM [{typeof(TEntity).Name}] WHERE [Id] IN {parameter}").ConfigureAwait(false);
         }
 
-        /// <summary>	Deletes the given entity asynchronously. </summary>
+        /// <summary>	Deletes the given entities asynchronously. WARNING: May be subjected to sql injections. </summary>
         /// <param name="entities">	The entities to delete. </param>
         /// <returns>	The number of objects deleted. </returns>
         public virtual ConfiguredTaskAwaitable<int> Delete(IEnumerable<TEntity> entities)
         {
-            return Connection.DeleteAsync(entities).ConfigureAwait(false);
+            return Delete(entities.Select(x => x.Id));
         }
 
         /// <summary>	WARNING: Deletes every entity from the given table. </summary>

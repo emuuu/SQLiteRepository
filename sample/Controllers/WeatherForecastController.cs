@@ -92,8 +92,26 @@ namespace Sample.Controllers
         [HttpDelete("{weatherForecastID}", Name = nameof(DeleteWeatherForecast))]
         public async Task<IActionResult> DeleteWeatherForecast(int weatherForecastID)
         {
-            await _weatherRepository.Delete(weatherForecastID); //does the same as above
+            await _weatherRepository.Delete(weatherForecastID);
             return Ok();
         }
+
+
+
+        [HttpDelete(Name = nameof(DeleteWeatherForecasts))]
+        public async Task<IActionResult> DeleteWeatherForecasts([FromQuery] IEnumerable<int>? weatherForecastIDs = null)
+        {
+            if (weatherForecastIDs == null)
+            {
+                await _weatherRepository.ClearTable();
+            }
+            else
+            {
+                await _weatherRepository.Delete(weatherForecastIDs);
+            }
+
+            return Ok();
+        }
+
     }
 }

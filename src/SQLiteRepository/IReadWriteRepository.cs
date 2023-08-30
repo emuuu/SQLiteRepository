@@ -84,12 +84,12 @@ namespace SQLiteRepository
         /// <returns>	The number of objects deleted. </returns>
         ConfiguredTaskAwaitable<int> Delete(TEntity entity);
 
-        /// <summary>	Deletes the given ID asynchronously. </summary>
+        /// <summary>	Deletes the given IDs asynchronously. WARNING: May be subjected to sql injections. </summary>
         /// <param name="ids">	The Identifiers to delete. </param>
         /// <returns>	The number of objects deleted. </returns>
         ConfiguredTaskAwaitable<int> Delete(IEnumerable<TKey> ids);
 
-        /// <summary>	Deletes the given entity asynchronously. </summary>
+        /// <summary>	Deletes the given entities asynchronously. WARNING: May be subjected to sql injections. </summary>
         /// <param name="entities">	The entities to delete. </param>
         /// <returns>	The number of objects deleted. </returns>
         ConfiguredTaskAwaitable<int> Delete(IEnumerable<TEntity> entities);
