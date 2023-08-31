@@ -12,9 +12,9 @@
     <Copyright></Copyright>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>SqLiteGenericRepository</PackageId>
-    <Version>1.0.7</Version>
-    <AssemblyVersion>1.0.0.7</AssemblyVersion>
-    <PackageReleaseNotes>fixed deleting items by IEnumerable of TEntity or TKey</PackageReleaseNotes>
+    <Version>1.0.8</Version>
+    <AssemblyVersion>1.0.0.8</AssemblyVersion>
+    <PackageReleaseNotes>added null/empty catch on AddRange</PackageReleaseNotes>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <Title>SqliteRepository</Title>
   </PropertyGroup>

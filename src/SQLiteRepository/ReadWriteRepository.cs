@@ -163,6 +163,9 @@ namespace SQLiteRepository
         /// <returns>	The number of rows added to the table. </returns>
         public virtual ConfiguredTaskAwaitable<int> AddRange(IEnumerable<TEntity> entities)
         {
+            if (entities == null || !entities.Any())
+                return default;
+
             foreach (var property in typeof(TEntity).GetProperties())
             {
                 if (property.PropertyType == typeof(string))
